@@ -1,13 +1,13 @@
 const mongoose = require('mongoose')
 
 const invSchema = new mongoose.Schema({
-    username: {
+    invIngredient: {
         type: String,
         required: true,
         unique: true
     },
-    password: String,
-})
+    category: {type: String},
+}, {timestamps: true})
 
 const Inventory = mongoose.model('Inventory', invSchema)
 
