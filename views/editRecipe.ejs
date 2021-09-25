@@ -1,0 +1,59 @@
+<%- include('./partials/header.ejs')%>
+    <h1>Edit <%= recipe.name %></h1>
+    <form action="/recipes/<%=recipe.id%>?_method=PUT" method="POST">
+        <fieldset>
+            <label for="name">Name: </label>
+            <input type="text" id="name" name="name" value="<%=recipe.name%>">
+        </fieldset>
+        <fieldset>
+            <label for="cuisine">Cuisine: </label>
+            <input type="text" id="cuisine" name="cuisine" value="<%=recipe.cuisine%>">
+        </fieldset>
+        <fieldset>
+            <label for="servingSize">Serving Size: </label>
+            <input type="text" id="servingSize" name="servingSize" value="<%=recipe.servingSize%>">
+        </fieldset>
+        <% for(let i = 0; i < ingredientList.length; i++) { %>
+       
+            <fieldset>
+                <label for="ingredient">Ingredient: </label>
+                <input type="text" id="ingredient" name="ingredient" value="<%=ingredientList[i].ingredient%>">
+            </fieldset>
+            <fieldset>
+                <label for="measurement">Measurement: </label>
+                <input type="text" id="measurement" name="measurement" value="<%=ingredientList[i].measurement%>">
+            </fieldset>
+            <fieldset>
+                <label for="measurementType">Measurement Type: </label>
+                <input type="text" id="measurementType" name="measurementType" value="<%=ingredientList[i].measurementType%>">
+            </fieldset>
+
+        <% }%>
+        <fieldset>
+            <label for="urlLink">Recipe Link: </label>
+            <input type="text" id="urlLink" name="urlLink" value="<%=recipe.urlLink%>">
+        </fieldset>
+        <fieldset>
+            <label for="youtubeLink">Youtube Link: </label>
+            <input type="text" id="youtubeLink" name="youtubeLink" value="<%=recipe.youtubeLink%>">
+        </fieldset>
+        <% for(elem of recipe.directions){ %>
+            <fieldset>
+                <label for="step">Step: </label>
+                <input type="text" id="step" name="step" value="<%=elem.step%>">
+            </fieldset>
+            <fieldset>
+                <label for="direction">Direction: </label>
+            <textarea type="text" id="direction" name="direction" ><%=elem.direction%></textarea> 
+            </fieldset>
+        <% }%>
+        <fieldset>
+            <label for="notes">Notes: </label>
+            <textarea type="text" id="notes" name="notes"><%=recipe.notes%></textarea></textarea> 
+        </fieldset>
+        <br><br>
+        <input type="submit" class="btn btn-primary" value="Edit Recipe" >
+    </form>
+
+</body>
+</html>

@@ -19,7 +19,14 @@
             <% if(recipe.youtubeLink){ %>
                 Youtube Link: <%= recipe.youtubeLink %> <br>
             <% }%>
-            Directions: <%= recipe.directions %> <br>
+            Directions:
+            <% for(elem of recipe.directions){ %>
+                <li>
+                <%= elem %> : 
+                <%= elem.direction %>
+                </li>
+                <br>
+            <% }%>
             Notes: <%= recipe.notes %> <br>
         </li>
 </ul>

@@ -1,17 +1,17 @@
 const mongoose = require('mongoose')
 
 //subdocument of ingredient list
-const ingredientsSchema = new mongoose.Schema({
-    ingredient: String, 
-    measurement: Number,
-    measurementType: String,
-})
+// const ingredientsSchema = new mongoose.Schema({
+//     ingredient: String, 
+//     measurement: Number,
+//     measurementType: String,
+// })
 
-//subdocument of directions
-const directionsSchema = new mongoose.Schema({
-    step: Number, 
-    direction: String
-})
+// //subdocument of directions
+// const directionsSchema = new mongoose.Schema({
+//     step: Number, 
+//     direction: String
+// })
 
 const recipeSchema = new mongoose.Schema({
     name: {
@@ -21,10 +21,14 @@ const recipeSchema = new mongoose.Schema({
     },
     cuisine: [{type: String}],
     servingSize: {type: Number},
-    ingredientList: [ingredientsSchema], 
+    ingredientList: [{
+        ingredient: {type: String},
+        measurement: {type: Number},
+        measurementType:{type: String},
+    }], 
     urlLink: {type: String}, 
     youtubeLink: {type: String},
-    directions: [directionsSchema],
+    directions: [{type:String}],
     notes: {type: String},
 })
 
