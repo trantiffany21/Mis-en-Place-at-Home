@@ -1,0 +1,12 @@
+<%- include('./partials/header.ejs')%>
+    <h1>All Inventory</h1>
+    <ul>
+    <% for(let i =0; i<inventory.length; i++){ %>
+        <li>
+            Ingredient Name: <a href="/inventory/<%= inventory[i].id %>"><%= inventory[i].invIngredient %></a> <br>
+            Category: <%= inventory[i].category %>
+        </li>
+    <% } %>
+</ul>
+</body>
+</html>

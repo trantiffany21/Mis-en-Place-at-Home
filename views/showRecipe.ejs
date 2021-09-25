@@ -1,0 +1,29 @@
+<%- include('./partials/header.ejs')%>
+    <h1><%= recipe.name %></h1>
+    <ul>
+        <li>
+            Name: <%= recipe.name %> <br>
+            Cuisine: <%= recipe.cuisine %> <br>
+            Serving Size: <%= recipe.servingSize %> <br>
+            Ingredients:
+            <% for(elem of recipe.ingredientList){ %>
+                <li>
+                <%= elem.ingredient %>
+                <%= elem.measurement %>
+                <%= elem.measurementType %>
+            </li>
+                <br>
+            <% } if(recipe.urlLink){ %>
+                Recipe Link: <a href="<%= recipe.urlLink %>" target="_blank"><%= recipe.urlLink %></a> <br>
+            <% }%>
+            <% if(recipe.youtubeLink){ %>
+                Youtube Link: <%= recipe.youtubeLink %> <br>
+            <% }%>
+            Directions: <%= recipe.directions %> <br>
+            Notes: <%= recipe.notes %> <br>
+        </li>
+</ul>
+<br><br>
+<a href="/recipes/<%=recipe.id%>/edit"><button>Edit Recipe</button></a>
+</body>
+</html>

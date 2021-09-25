@@ -1,0 +1,11 @@
+<%- include('./partials/header.ejs')%>
+    <h1><%= item.invIngredient %></h1>
+    <ul>
+        <li>
+            Ingredient Name: <%= item.invIngredient %> <br>
+            Category: <%= item.category %>
+        </li>
+</ul>
+<a href="/inventory/<%=item.id%>/edit"><button>Edit Item</button></a>
+</body>
+</html>
