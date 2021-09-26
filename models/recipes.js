@@ -1,18 +1,5 @@
 const mongoose = require('mongoose')
 
-//subdocument of ingredient list
-// const ingredientsSchema = new mongoose.Schema({
-//     ingredient: String, 
-//     measurement: Number,
-//     measurementType: String,
-// })
-
-// //subdocument of directions
-// const directionsSchema = new mongoose.Schema({
-//     step: Number, 
-//     direction: String
-// })
-
 const recipeSchema = new mongoose.Schema({
     name: {
         type: String,
