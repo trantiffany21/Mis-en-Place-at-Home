@@ -1,0 +1,19 @@
+<%- include('./partials/header.ejs')%>
+    <h1>Edit <%= item.invIngredient %></h1>
+    <form action="/inventory/<%=item.id%>?_method=PUT" method="POST">
+        <section class="form-group row">
+            <fieldset class="col-auto">
+                <label for="invIngredient">Ingredient: </label>
+                <input type="text" class="form-control" id="invIngredient" name="invIngredient" value="<%=item.invIngredient%>">
+            </fieldset>
+            <fieldset class="col-auto">
+                <label for="category">Category: </label>
+                <input type="text" class="form-control" id="category" name="category" value="<%=item.category%>">
+            </fieldset>
+        </section>
+    <br><br>
+    <input type="submit" class="btn btn-primary" value="Edit item" >
+    </form>
+
+</body>
+</html>

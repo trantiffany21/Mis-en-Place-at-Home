@@ -21,11 +21,37 @@ router.get('/seed', async (req,res)=>{
         console.log(err.message)
     }
 })
-
+router.get('/:id/edit', (req,res)=>{
+    try{
+        Inventory.findById(req.params.id, (err, foundItem)=>{
+            err ? console.log(err) : res.render('editInv.ejs', {item: foundItem})
+        })
+        
+    }catch(err){
+        console.log(err.message)
+    }
+})
 router.get('/:id', (req,res)=>{
     try{
         Inventory.findById(req.params.id, (err,foundItem)=>{
             err ? console.log(err) : res.render('showInv.ejs', {item: foundItem})
+        })
+    }catch(err){
+        console.log(err.message)
+    }
+})
+
+router.put('/:id', (req,res)=>{
+    try{
+        console.log(req.body)
+        Inventory.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedItem)=>{
+            if(err){
+                console.log(err)
+                res.redirect(`/inventory/${req.params.id}/edit`)
+            }else{
+                
+                res.redirect(`/inventory/${req.params.id}`)
+            }
         })
     }catch(err){
         console.log(err.message)
