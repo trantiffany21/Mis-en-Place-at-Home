@@ -73,4 +73,15 @@ router.put('/:id', (req,res)=>{
     }
 })
 
+router.delete('/:id', (req,res)=>{
+    try{
+        Recipe.findByIdAndDelete(req.params.id, (err, deletedRecipe)=>{
+            err ? console.log(err) : res.redirect('/recipes')
+        })
+        
+    }catch(err){
+        console.log(err.message)
+    }
+})
+
 module.exports  = router

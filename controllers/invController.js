@@ -58,5 +58,15 @@ router.put('/:id', (req,res)=>{
     }
 })
 
+router.delete('/:id', (req,res)=>{
+    try{
+        Inventory.findByIdAndDelete(req.params.id, (err, deletedItem)=>{
+            err ? console.log(err) : res.redirect('/inventory')
+        })
+        
+    }catch(err){
+        console.log(err.message)
+    }
+})
 
 module.exports  = router

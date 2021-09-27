@@ -31,6 +31,15 @@
         </li>
 </ul>
 <br><br>
-<a href="/recipes/<%=recipe.id%>/edit"><button>Edit Recipe</button></a>
+<section class="row">
+    <article class="col-auto">
+        <a href="/recipes/<%=recipe.id%>/edit"><button class="btn btn-primary">Edit Recipe</button></a>
+    </article>
+    <article class="col-auto">
+        <form action="/recipes/<%=recipe.id%>?_method=DELETE" method="POST">
+            <input class="btn btn-primary" type="submit" value="Delete Recipe">
+        </form>
+    </article>
+</section>
 </body>
 </html>
