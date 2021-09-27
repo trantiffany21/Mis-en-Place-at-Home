@@ -21,6 +21,11 @@ router.get('/seed', async (req,res)=>{
         console.log(err.message)
     }
 })
+
+router.get('/new', (req,res)=>{
+    res.render('newInv.ejs')
+})
+
 router.get('/:id/edit', (req,res)=>{
     try{
         Inventory.findById(req.params.id, (err, foundItem)=>{
@@ -35,6 +40,23 @@ router.get('/:id', (req,res)=>{
     try{
         Inventory.findById(req.params.id, (err,foundItem)=>{
             err ? console.log(err) : res.render('showInv.ejs', {item: foundItem})
+        })
+    }catch(err){
+        console.log(err.message)
+    }
+})
+
+router.post('/', (req,res)=>{
+    try{
+        console.log(req.body)
+        Inventory.create(req.body, (err, newItem)=>{
+            if(err){
+                console.log(err)
+                res.redirect(`/inventory/new`)
+            }else{
+                
+                res.redirect(`/inventory`)
+            }
         })
     }catch(err){
         console.log(err.message)

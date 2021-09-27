@@ -1,0 +1,46 @@
+<%- include('./partials/header.ejs')%>
+    <h1>New Recipe</h1>
+    <form action="/recipes" method="POST">
+        <section class="form-group row">
+            <fieldset class="col-auto">
+                <label for="name"></label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Dish Name">
+            </fieldset>
+            <fieldset class="col-auto">
+                <label for="cuisine"></label>
+                <input type="text" class="form-control" id="cuisine" name="cuisine" placeholder="Cuisine">
+            </fieldset>
+            <fieldset class="col-auto">
+                <label for="servingSize"></label>
+                <input type="text" class="form-control" id="servingSize" name="servingSize" placeholder="Serving Size">
+            </fieldset>
+        </section>
+            <section id="ingredient-list" >
+            </section>
+        <button type="button" onclick="addIngredientListForm()"> + </button>
+        <button type="button" onclick="removeIngredientListForm()"> - </button>
+        <section class="form-group">
+            <fieldset class="col-auto">
+                <label for="urlLink"></label>
+                <input type="text" class="form-control" id="urlLink" name="urlLink" placeholder="Recipe URL Link">
+            </fieldset>
+            <fieldset class="col-auto">
+                <label for="youtubeLink"></label>
+                <input type="text" class="form-control" id="youtubeLink" name="youtubeLink" placeholder="Recipe Youtube Link">
+            </fieldset>
+                <fieldset>
+                    <label for="direction"></label>
+                    <textarea type="text" class="form-control" id="direction" name="direction" placeholder="Enter Directions"></textarea> 
+                </fieldset>
+            <fieldset class="col-auto">
+                <label for="notes"></label>
+                <textarea type="text" class="form-control" id="notes" name="notes" placeholder="Enter Personal Notes"></textarea></textarea> 
+            </fieldset>
+    </section>
+        <br><br>
+        <input type="submit" class="btn btn-primary" value="+ New Recipe" >
+    
+    </form>
+
+
+<%- include('./partials/footer.ejs')%>

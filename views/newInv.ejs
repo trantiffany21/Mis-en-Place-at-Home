@@ -1,0 +1,19 @@
+<%- include('./partials/header.ejs')%>
+    <h1>New Inventory Item %></h1>
+    <form action="/inventory/" method="POST">
+        <section class="form-group row">
+            <fieldset class="col-auto">
+                <label for="invIngredient"></label>
+                <input type="text" class="form-control" id="invIngredient" name="invIngredient" placeholder="Ingredient Name">
+            </fieldset>
+            <fieldset class="col-auto">
+                <label for="category"></label>
+                <input type="text" class="form-control" id="category" name="category" placeholder="Category">
+            </fieldset>
+        </section>
+    <br><br>
+    <input type="submit" class="btn btn-primary" value="+ New Inventory" >
+    </form>
+
+</body>
+</html>
