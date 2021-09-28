@@ -5,15 +5,15 @@ module.exports = [{
     ingredientList: [
         {
         ingredient: 'toast slice',
-        measurement: 2, 
+        measurement: '2', 
         },
         {
             ingredient: 'cheese slice',
-            measurement: 2, 
+            measurement: '2', 
         },
         {
             ingredient: 'butter',
-            measurement: 1,
+            measurement: '1',
             measurementType: 'tablespoon' 
         }], 
     

@@ -1,5 +1,6 @@
 const express = require('express')
 const Recipe = require('../models/recipes')
+const Inventory = require('../models/inventory')
 const recipeSeed = require('../models/seed/recipeSeed')
 const router = express.Router()
 
@@ -24,6 +25,51 @@ router.get('/seed', async (req,res)=>{
 
 router.get('/new', (req,res)=>{
     res.render('newRecipe.ejs')
+})
+
+//match router
+router.get('/match', (req,res)=>{
+    try{
+        Recipe.find({}, "ingredientList.ingredient", (err,ingredients)=>{
+            let arrayOfIngredientList = []
+            let objRecipes = {}
+            let arrIngredients = []
+            for(let recipeIndex in ingredients){
+                let individualRecipe = ingredients[recipeIndex]
+                arrIngredients = []
+                objRecipes = {}
+                objRecipes.recipeId = individualRecipe.id
+                for(let ingredientIndex in individualRecipe.ingredientList){
+                    arrIngredients.push(individualRecipe.ingredientList[ingredientIndex].ingredient)
+                }
+                objRecipes.arrIngredients = arrIngredients
+                arrayOfIngredientList.push(objRecipes)
+            }
+            res.send(arrayOfIngredientList)
+
+            let matchIds = []
+            for(let i = 0; i< arrayOfIngredientList.length; i++){
+                console.log("test: " , arrayOfIngredientList[i]['arrIngredients'])
+                Inventory.find({
+                     invIngredient: {$in: arrayOfIngredientList[i]['arrIngredients']}}, 'id invIngredient', (err, found)=>{
+                         console.log("found" , found)
+                     })
+                
+            }
+
+            
+        })
+
+        }
+        // const matches = Inventory.find( 
+        //     {invIngredient: { $in: [
+
+        //     ]}}
+        // )
+
+    catch(err){
+        console.log(err.message)
+    }
 })
 
 router.get('/:id/edit', (req,res)=>{
@@ -70,7 +116,6 @@ router.post('/', (req,res)=>{
         Recipe.create(req.body, (err, newRecipe)=>{
             if(err){
                 console.log(err)
-                res.redirect(`/recipes/new`)
             }else{
                 res.redirect(`/recipes`)
             }
@@ -103,7 +148,6 @@ router.put('/:id', (req,res)=>{
         Recipe.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedRecipe)=>{
             if(err){
                 console.log(err)
-                res.redirect(`/recipes/${req.params.id}/edit`)
             }else{
                 
                 res.redirect(`/recipes/${req.params.id}`)

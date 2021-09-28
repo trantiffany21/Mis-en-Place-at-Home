@@ -1,0 +1,15 @@
+<%- include('./partials/header.ejs')%>
+    <h1>All Recipes</h1>
+    <ul>
+    <% for(let i =0; i<recipes.length; i++){ %>
+        <li>
+            Name: <a href="/recipes/<%= recipes[i].id %>"><%= recipes[i].name %></a> <br>
+            Cuisine: <%= recipes[i].cuisine %> <br>
+            Notes: <%= recipes[i].notes %> <br>
+        </li>
+    <% } %>
+</ul>
+<br><br>
+<a href="/recipes/new"><button class="btn btn-primary">+ New Recipe</button></a>
+</body>
+</html>
