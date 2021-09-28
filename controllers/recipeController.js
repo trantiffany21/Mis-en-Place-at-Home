@@ -64,7 +64,6 @@ router.post('/', (req,res)=>{
             obj.measurementType = measurementTypes[i]
             ingredientList.push(obj)
         }
-
         //assign new array of objects to req.body.ingredientList
         req.body.ingredientList = ingredientList
         console.log(req.body)
