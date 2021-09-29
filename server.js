@@ -21,7 +21,7 @@ mongoose.connect(mongoURI, {
     console.log('database connected')
 })
 
-db.on('error', (err) => {console.log('ERROR: ', ERR)})
+db.on('error', (err) => {console.log('ERROR: ', err)})
 db.on('connected', () => {console.log('mongo connected')})
 db.on('disconnected', (err) => {console.log('mongo disconnected')})
 
