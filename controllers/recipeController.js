@@ -28,48 +28,86 @@ router.get('/new', (req,res)=>{
 })
 
 //match router
-router.get('/match', (req,res)=>{
-    try{
-        Recipe.find({}, "ingredientList.ingredient", (err,ingredients)=>{
-            let arrayOfIngredientList = []
-            let objRecipes = {}
-            let arrIngredients = []
-            for(let recipeIndex in ingredients){
-                let individualRecipe = ingredients[recipeIndex]
-                arrIngredients = []
-                objRecipes = {}
-                objRecipes.recipeId = individualRecipe.id
-                for(let ingredientIndex in individualRecipe.ingredientList){
-                    arrIngredients.push(individualRecipe.ingredientList[ingredientIndex].ingredient)
-                }
-                objRecipes.arrIngredients = arrIngredients
-                arrayOfIngredientList.push(objRecipes)
-            }
-            res.send(arrayOfIngredientList)
+router.get('/match', async (req,res)=>{
+    // try{
+    //     Recipe.find({}, "ingredientList.ingredient", (err,ingredients)=>{
+    //         let arrayOfIngredientList = []
+    //         let objRecipes = {}
+    //         let arrIngredients = []
+    //         for(let recipeIndex in ingredients){
+    //             let individualRecipe = ingredients[recipeIndex]
+    //             arrIngredients = []
+    //             objRecipes = {}
+    //             objRecipes.recipeId = individualRecipe.id
+    //             for(let ingredientIndex in individualRecipe.ingredientList){
+    //                 arrIngredients.push(individualRecipe.ingredientList[ingredientIndex].ingredient)
+    //             }
+    //             objRecipes.arrIngredients = arrIngredients
+    //             arrayOfIngredientList.push(objRecipes)
+    //         }
+    //         //res.send(arrayOfIngredientList)
 
-            let matchIds = []
-            for(let i = 0; i< arrayOfIngredientList.length; i++){
-                console.log("test: " , arrayOfIngredientList[i]['arrIngredients'])
-                Inventory.find({
-                     invIngredient: {$in: arrayOfIngredientList[i]['arrIngredients']}}, 'id invIngredient', (err, found)=>{
-                         console.log("found" , found)
-                     })
+    //         let matchIds = []
+    //         for(let i = 0; i< arrayOfIngredientList.length; i++){
+    //             console.log("test: " , arrayOfIngredientList[i]['arrIngredients'])
+    //             let normIng = arrayOfIngredientList[i]['arrIngredients'].map( item =>{
+    //                 return new RegExp(item, "i")
+    //             })
+    //             console.log('norm ', normIng)
+    //             Inventory.find({
+    //                  invIngredient: {$in: normIng}}, 'id invIngredient', (err, found)=>{
+    //                      let length = Object.keys(found).length
+    //                      if(length = normIng.length){
+    //                          matchIds.push( arrayOfIngredientList[i]['recipeId'])
+    //                          res.send(matchIds)
+    //                         }
+    //                     })
                 
+    //             }
+ 
+    //     })
+    // }catch(err){
+    //     console.log(err.message)
+    // }
+
+        let ingredients = await Recipe.find({}, "ingredientList.ingredient")
+        console.log('ingredients: ', ingredients)
+        let arrayOfIngredientList = []
+        let objRecipes = {}
+        let arrIngredients = []
+        let recipeMatchIds = []
+        for(let recipeIndex in ingredients){
+            let individualRecipe = ingredients[recipeIndex]
+            arrIngredients = []
+            objRecipes = {}
+            objRecipes.recipeId = individualRecipe.id
+            for(let ingredientIndex in individualRecipe.ingredientList){
+                arrIngredients.push(individualRecipe.ingredientList[ingredientIndex].ingredient)
             }
-
-            
-        })
-
+            objRecipes.arrIngredients = arrIngredients
+            arrayOfIngredientList.push(objRecipes)
+            //res.send(arrayOfIngredientList)
+        
+            console.log("array of ingredientList" , arrayOfIngredientList)
         }
-        // const matches = Inventory.find( 
-        //     {invIngredient: { $in: [
-
-        //     ]}}
-        // )
-
-    catch(err){
-        console.log(err.message)
-    }
+        for(let i = 0; i< arrayOfIngredientList.length; i++){
+            console.log("ingredientList: " , arrayOfIngredientList[i]['arrIngredients'])
+            let normIng = arrayOfIngredientList[i]['arrIngredients'].map( item =>{
+                return new RegExp(item, "i")
+            })
+            console.log('norm ', normIng)
+            let match = await Inventory.find({
+                invIngredient: {$in: normIng}}, 'id invIngredient')
+            console.log('match, ', match)
+            if(match.length === normIng.length){
+                recipeMatchIds.push( arrayOfIngredientList[i]['recipeId'])
+            }
+            
+            }
+        console.log('recipematchids: ', recipeMatchIds)
+        let foundMatches = await Recipe.find({_id: {$in: recipeMatchIds}})
+        //res.send(foundMatches)
+        res.render('match.ejs', {recipes: foundMatches})
 })
 
 router.get('/:id/edit', (req,res)=>{
