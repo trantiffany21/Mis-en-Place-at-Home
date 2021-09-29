@@ -31,13 +31,11 @@ const addIngredientListForm = () =>{
         document.getElementById('ingredient-list').appendChild(article)
         console.log(document.getElementById('ingredient-list'))
 }
-addIngredientListForm()
-
-
-
 
 const removeIngredientListForm = () =>{
     let ingredient = document.getElementById('ingredient-list')
-    console.log(ingredient.lastChild)
-    ingredient.removeChild(ingredient.lastChild)
+    if(ingredient.childElementCount >1) {
+        ingredient.removeChild(ingredient.lastElementChild)
+    }
+
 }

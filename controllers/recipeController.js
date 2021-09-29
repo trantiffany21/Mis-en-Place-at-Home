@@ -29,53 +29,17 @@ router.get('/new', (req,res)=>{
 
 //match router
 router.get('/match', async (req,res)=>{
-    // try{
-    //     Recipe.find({}, "ingredientList.ingredient", (err,ingredients)=>{
-    //         let arrayOfIngredientList = []
-    //         let objRecipes = {}
-    //         let arrIngredients = []
-    //         for(let recipeIndex in ingredients){
-    //             let individualRecipe = ingredients[recipeIndex]
-    //             arrIngredients = []
-    //             objRecipes = {}
-    //             objRecipes.recipeId = individualRecipe.id
-    //             for(let ingredientIndex in individualRecipe.ingredientList){
-    //                 arrIngredients.push(individualRecipe.ingredientList[ingredientIndex].ingredient)
-    //             }
-    //             objRecipes.arrIngredients = arrIngredients
-    //             arrayOfIngredientList.push(objRecipes)
-    //         }
-    //         //res.send(arrayOfIngredientList)
-
-    //         let matchIds = []
-    //         for(let i = 0; i< arrayOfIngredientList.length; i++){
-    //             console.log("test: " , arrayOfIngredientList[i]['arrIngredients'])
-    //             let normIng = arrayOfIngredientList[i]['arrIngredients'].map( item =>{
-    //                 return new RegExp(item, "i")
-    //             })
-    //             console.log('norm ', normIng)
-    //             Inventory.find({
-    //                  invIngredient: {$in: normIng}}, 'id invIngredient', (err, found)=>{
-    //                      let length = Object.keys(found).length
-    //                      if(length = normIng.length){
-    //                          matchIds.push( arrayOfIngredientList[i]['recipeId'])
-    //                          res.send(matchIds)
-    //                         }
-    //                     })
-                
-    //             }
- 
-    //     })
-    // }catch(err){
-    //     console.log(err.message)
-    // }
-
-        let ingredients = await Recipe.find({}, "ingredientList.ingredient")
+        //find all ingredients names for each recipe, stored as an object with ingredientList being an array of objects
+        let ingredients = await Recipe.find({}, "ingredientList.ingredient name")
         console.log('ingredients: ', ingredients)
+
+        //create empty arrays and objects to create the new array of only ingredient names
         let arrayOfIngredientList = []
         let objRecipes = {}
         let arrIngredients = []
         let recipeMatchIds = []
+
+        //iteratre through ingredients object and create a new array of just the ingredient names and recipe ID. arrayOfIngredientList will be an array of every recipe and its ingredients stored as an object
         for(let recipeIndex in ingredients){
             let individualRecipe = ingredients[recipeIndex]
             arrIngredients = []
@@ -86,10 +50,11 @@ router.get('/match', async (req,res)=>{
             }
             objRecipes.arrIngredients = arrIngredients
             arrayOfIngredientList.push(objRecipes)
-            //res.send(arrayOfIngredientList)
         
-            console.log("array of ingredientList" , arrayOfIngredientList)
         }
+        console.log("array of ingredientList" , arrayOfIngredientList)
+
+        //iterate through the Inventory and search for the array of ingredients. If the count of matches equals the count of ingredients in the recipe, push the recipe ID into new array recipeMatchIds
         for(let i = 0; i< arrayOfIngredientList.length; i++){
             console.log("ingredientList: " , arrayOfIngredientList[i]['arrIngredients'])
             let normIng = arrayOfIngredientList[i]['arrIngredients'].map( item =>{
@@ -104,9 +69,11 @@ router.get('/match', async (req,res)=>{
             }
             
             }
+
         console.log('recipematchids: ', recipeMatchIds)
+
+        //find the matching recipe IDs in the Recipe db and create array to send those items to the match.ejs
         let foundMatches = await Recipe.find({_id: {$in: recipeMatchIds}})
-        //res.send(foundMatches)
         res.render('match.ejs', {recipes: foundMatches})
 })
 

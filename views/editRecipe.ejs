@@ -15,36 +15,42 @@
                 <input type="text" class="form-control" id="servingSize" name="servingSize" value="<%=recipe.servingSize%>">
             </fieldset>
         </section>
+        <section id="ingredient-list" >
         <% for(let i = 0; i < ingredientList.length; i++) { %>
-            <section class="form-group row">
-                <fieldset class="col">
-                    <label for="ingredient">Ingredient: </label>
-                    <input type="text" class="form-control" id="ingredient" name="ingredient" value="<%=ingredientList[i].ingredient%>">
-                </fieldset>
-                <fieldset class="col-sm-2">
-                    <label for="measurement">Measurement: </label>
-                    <input type="text" class="form-control" id="measurement" name="measurement" value="<%=ingredientList[i].measurement%>">
-                </fieldset>
-                <fieldset class="col-sm-auto">
-                    <label for="measurementType">Measurement Type: </label>
-                    <select class="custom-select form-control custom-select-sm" name="measurementType" id="measurementType">
-                        <option selected><%=ingredientList[i].measurementType%></option>
-                        <% let options = ['cup', 
-                        'grams', 
-                        'lbs', 
-                        'mL', 
-                        'ounce', 
-                        'piece', 
-                        'tablespoon', 
-                        'teaspoon', 
-                        'other']
-                            for(elem of options) { %>
-                                <option value="<%= elem %>"><%= elem %></option>
-                            <% } %>
-                    </select>
-                </fieldset>
-            </section>
+            <article>
+                <section class="form-group row">
+                    <fieldset class="col">
+                        <label for="ingredient">Ingredient: </label>
+                        <input type="text" class="form-control" id="ingredient" name="ingredient" value="<%=ingredientList[i].ingredient%>">
+                    </fieldset>
+                    <fieldset class="col-sm-2">
+                        <label for="measurement">Measurement: </label>
+                        <input type="text" class="form-control" id="measurement" name="measurement" value="<%=ingredientList[i].measurement%>">
+                    </fieldset>
+                    <fieldset class="col-sm-auto">
+                        <label for="measurementType">Measurement Type: </label>
+                        <select class="custom-select form-control custom-select-sm" name="measurementType" id="measurementType">
+                            <option selected><%=ingredientList[i].measurementType%></option>
+                            <% let options = ['cup', 
+                            'grams', 
+                            'lbs', 
+                            'mL', 
+                            'ounce', 
+                            'piece', 
+                            'tablespoon', 
+                            'teaspoon', 
+                            'other']
+                                for(elem of options) { %>
+                                    <option value="<%= elem %>"><%= elem %></option>
+                                <% } %>
+                        </select>
+                    </fieldset>
+                </section>
+            </article>
             <% }%>
+        </section>
+            <button type="button" onclick="addIngredientListForm()"> + </button>
+        <button type="button" onclick="removeIngredientListForm(); return false;"> - </button>
         <section class="form-group">
             <fieldset class="col-auto">
                 <label for="urlLink">Recipe Link: </label>
@@ -69,6 +75,5 @@
         <input type="submit" class="btn btn-primary" value="Edit Recipe" >
     
     </form>
-
-</body>
-</html>
+    <script src="/js/helper.js"></script>
+<%- include('./partials/footer.ejs')%>
