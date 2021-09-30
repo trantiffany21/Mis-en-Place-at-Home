@@ -172,12 +172,23 @@ router.post('/', (req,res)=>{
         let measurementTypes = req.body.measurementType
 
         //iterate through array to create new objects and push to array
-        for(let i = 0; i<ingredients.length; i++){
-            let obj = {}
-            obj.ingredient = ingredients[i]
-            obj.measurement = measurements[i]
-            obj.measurementType = measurementTypes[i]
-            ingredientList.push(obj)
+        console.log("test: ", typeof ingredients)
+        if(ingredients){
+            if(typeof ingredients === 'array'){
+                for(let i = 0; i<ingredients.length; i++){
+                    let obj = {}
+                    obj.ingredient = ingredients[i]
+                    obj.measurement = measurements[i]
+                    obj.measurementType = measurementTypes[i]
+                    ingredientList.push(obj)
+                }
+            }else if(typeof ingredients === 'string'){
+                let obj = {}
+                obj.ingredient = ingredients
+                    obj.measurement = measurements
+                    obj.measurementType = measurementTypes
+                    ingredientList.push(obj)
+            }
         }
         //assign new array of objects to req.body.ingredientList
         req.body.ingredientList = ingredientList
@@ -203,16 +214,33 @@ router.put('/:id', (req,res)=>{
         let measurementTypes = req.body.measurementType
 
         //iterate through array to create new objects and push to array
-        for(let i = 0; i<ingredients.length; i++){
-            let obj = {}
-            obj.ingredient = ingredients[i]
-            obj.measurement = measurements[i]
-            obj.measurementType = measurementTypes[i]
-            ingredientList.push(obj)
+        console.log("test: ", typeof ingredients)
+        if(ingredients){
+            if(typeof ingredients === 'array'){
+                for(let i = 0; i<ingredients.length; i++){
+                    let obj = {}
+                    obj.ingredient = ingredients[i]
+                    obj.measurement = measurements[i]
+                    obj.measurementType = measurementTypes[i]
+                    ingredientList.push(obj)
+                }
+            }else if(typeof ingredients === 'string'){
+                let obj = {}
+                obj.ingredient = ingredients
+                    obj.measurement = measurements
+                    obj.measurementType = measurementTypes
+                    ingredientList.push(obj)
+            }
         }
 
         //assign new array of objects to req.body.ingredientList
         req.body.ingredientList = ingredientList
+
+       for(let i = 0; i< req.body.directions.length; i++ ){
+           if(req.body.directions[i] === ""){
+               req.body.directions.splice(i,1)
+           }
+       }
         console.log(req.body)
         Recipe.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedRecipe)=>{
             if(err){

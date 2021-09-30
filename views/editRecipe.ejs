@@ -15,6 +15,8 @@
                 <input type="text" class="form-control" id="servingSize" name="servingSize" value="<%=recipe.servingSize%>">
             </fieldset>
         </section>
+        Add/Remove Ingredients: <button type="button" onclick="addIngredientListForm()"> + </button>
+        <button type="button" onclick="removeIngredientListForm(); return false;"> - </button>
         <section id="ingredient-list" >
         <% for(let i = 0; i < ingredientList.length; i++) { %>
             <article>
@@ -49,8 +51,6 @@
             </article>
             <% }%>
         </section>
-            <button type="button" onclick="addIngredientListForm()"> + </button>
-        <button type="button" onclick="removeIngredientListForm(); return false;"> - </button>
         <section class="form-group">
             <fieldset class="col-auto">
                 <label for="img">Image Link: </label>
@@ -64,17 +64,22 @@
                 <label for="youtubeLink">Youtube Link: </label>
                 <input type="text" class="form-control" id="youtubeLink" name="youtubeLink" value="<%=recipe.youtubeLink%>">
             </fieldset>
+        </section>
+        Add/Remove Directions<button type="button" onclick="addDirectionForm()"> + </button>
+        <button type="button" onclick="removeDirectionForm(); return false;"> - </button>
+            <section id="direction-list" >
             <% for(elem of recipe.directions){ %>
                 <fieldset>
-                    <label for="direction">Directions: </label>
-                    <textarea type="text" class="form-control" id="direction" name="direction" ><%= elem %></textarea> 
+                    <label for="directions">Directions: </label>
+                    <textarea type="text" class="form-control" id="directions" name="directions" ><%= elem %></textarea> 
                 </fieldset>
             <% }%>
+            </section>
+        
             <fieldset class="col-auto">
                 <label for="notes">Notes: </label>
                 <textarea type="text" class="form-control" id="notes" name="notes"><%=recipe.notes%></textarea></textarea> 
             </fieldset>
-    </section>
         <br><br>
         <input type="submit" class="btn btn-primary" value="Edit Recipe" >
     

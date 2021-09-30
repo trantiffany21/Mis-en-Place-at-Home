@@ -21,6 +21,10 @@
         <button type="button" onclick="removeIngredientListForm(); return false;"> - </button>
         <section class="form-group">
             <fieldset class="col-auto">
+                <label for="img"></label>
+                <input type="text" class="form-control" id="img" name="img" placeholder="Recipe Image Link">
+            </fieldset>
+            <fieldset class="col-auto">
                 <label for="urlLink"></label>
                 <input type="text" class="form-control" id="urlLink" name="urlLink" placeholder="Recipe URL Link">
             </fieldset>
@@ -28,15 +32,21 @@
                 <label for="youtubeLink"></label>
                 <input type="text" class="form-control" id="youtubeLink" name="youtubeLink" placeholder="Recipe Youtube Link">
             </fieldset>
+        </section>
+        <section id="direction-list" >
+            <article>
                 <fieldset>
-                    <label for="direction"></label>
-                    <textarea type="text" class="form-control" id="direction" name="direction" placeholder="Enter Directions"></textarea> 
+                    <label for="directions"></label>
+                    <textarea type="text" class="form-control" id="directions" name="directions" placeholder="Enter Directions"></textarea> 
                 </fieldset>
+            </article>
+            </section>
+        <button type="button" onclick="addDirectionForm()"> + </button>
+        <button type="button" onclick="removeDirectionForm(); return false;"> - </button>
             <fieldset class="col-auto">
                 <label for="notes"></label>
                 <textarea type="text" class="form-control" id="notes" name="notes" placeholder="Enter Personal Notes"></textarea></textarea> 
             </fieldset>
-    </section>
         <br><br>
         <input type="submit" class="btn btn-primary" value="+ New Recipe" >
     

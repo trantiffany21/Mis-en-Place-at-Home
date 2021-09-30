@@ -36,15 +36,15 @@ router.get('/:id/edit', (req,res)=>{
         console.log(err.message)
     }
 })
-router.get('/:id', (req,res)=>{
-    try{
-        Inventory.findById(req.params.id, (err,foundItem)=>{
-            err ? console.log(err) : res.render('showInv.ejs', {item: foundItem})
-        })
-    }catch(err){
-        console.log(err.message)
-    }
-})
+// router.get('/:id', (req,res)=>{
+//     try{
+//         Inventory.findById(req.params.id, (err,foundItem)=>{
+//             err ? console.log(err) : res.render('showInv.ejs', {item: foundItem})
+//         })
+//     }catch(err){
+//         console.log(err.message)
+//     }
+// })
 
 router.post('/', (req,res)=>{
     try{

@@ -39,3 +39,24 @@ const removeIngredientListForm = () =>{
     }
 
 }
+
+const addDirectionForm = () =>{
+    let article = document.createElement('article')
+
+    article.innerHTML = `
+        <fieldset>
+        <label for="directions"></label>
+        <textarea type="text" class="form-control" id="directions" name="directions" placeholder="Enter Directions"></textarea> 
+    </fieldset>
+            `
+        document.getElementById('direction-list').appendChild(article)
+        console.log(document.getElementById('direction-list'))
+}
+
+const removeDirectionForm = () =>{
+    let direction = document.getElementById('direction-list')
+    if(direction.childElementCount >1) {
+        direction.removeChild(direction.lastElementChild)
+    }
+
+}

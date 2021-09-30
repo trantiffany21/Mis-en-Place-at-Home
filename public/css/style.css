@@ -2,9 +2,9 @@ body{
     margin: 0 50px 0 50px;
 }
 .recipe-img{
-    height: 250px; 
-    width: 250px; 
-    float: left;
+    height: 300px; 
+    width: 300px; 
+    float: right;
     margin: 10px 20px 10px 10px;
 }
 ul{
