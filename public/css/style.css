@@ -10,3 +10,13 @@ body{
 ul{
     list-style-type: none;
 }
+.card-img-top{
+    height:200px;
+    width:200px;
+}
+.card{
+    width:200px;
+}
+.filter-bar{
+    margin: 25px auto;
+}

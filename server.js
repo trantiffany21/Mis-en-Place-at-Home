@@ -37,7 +37,7 @@ const invController = require('./controllers/invController')
 app.use('/inventory', invController)
 
 app.get('/', (req,res)=>{
-    res.render('home.ejs')
+    res.redirect('/recipes')
 })
 
 app.listen(PORT,()=>{

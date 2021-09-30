@@ -7,7 +7,7 @@ const router = express.Router()
 router.get('/', (req,res)=>{
     try{
         Recipe.find({}, (err, allRecipes)=>{
-            err ? console.log(err) : res.render('indexRecipe.ejs', {recipes: allRecipes})
+            err ? console.log(err) : res.render('indexRecipe.ejs', {recipes: allRecipes, pageTitle: "All Recipes"})
         })
         
     }catch(err){
@@ -74,7 +74,7 @@ router.get('/match', async (req,res)=>{
 
         //find the matching recipe IDs in the Recipe db and create array to send those items to the match.ejs
         let foundMatches = await Recipe.find({_id: {$in: recipeMatchIds}})
-        res.render('match.ejs', {recipes: foundMatches})
+        res.render('indexRecipe.ejs', {recipes: foundMatches, pageTitle: "Kitchen-Ready Recipes"})
 })
 
 //almost match route
@@ -138,7 +138,7 @@ router.get('/approxmatch', async (req,res)=>{
     //find the matching recipe IDs in the Recipe db and create array to send those items to the match.ejs
     let foundMatches = await Recipe.find({_id: {$in: recipeMatchIds}})
 
-    res.render('approxMatch.ejs', {recipes: foundMatches, notFound: notFoundArr})
+    res.render('indexRecipe.ejs', {recipes: foundMatches, notFound: notFoundArr, pageTitle: "Kitchen (Almost) Ready Recipes"})
 })
 
 router.get('/:id/edit', (req,res)=>{
@@ -216,7 +216,7 @@ router.put('/:id', (req,res)=>{
         //iterate through array to create new objects and push to array
         console.log("test: ", typeof ingredients)
         if(ingredients){
-            if(typeof ingredients === 'array'){
+            if(Array.isArray(ingredients)){
                 for(let i = 0; i<ingredients.length; i++){
                     let obj = {}
                     obj.ingredient = ingredients[i]

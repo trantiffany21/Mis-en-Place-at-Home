@@ -15,16 +15,19 @@
         <li>
             Name: <a href="/recipes/<%= recipes[i].id %>"><%= recipes[i].name %></a> <br>
             Cuisine: <%= recipes[i].cuisine %> <br>
-            Missing: <br>
-            <% for(let j =0; j < notFound.length; j++){ %>
-                <%if(notFound[j].recipeId === recipes[i].id){ %>
-                    <% for(let k =0; k < notFound[j].notFoundIng.length; k++){ %>
-                    <li>
-                        X <%=notFound[j].notFoundIng[k]%> <br>
-                    </li>
+            <% if(notFound.length >0){%>
+                <% for(let j =0; j < notFound.length; j++){ %>
+                    <%if(notFound[j].recipeId === recipes[i].id){ %>
+                        Missing: <br>
+                        <% for(let k =0; k < notFound[j].notFoundIng.length; k++){ %>
+                        <li>
+                            X <%=notFound[j].notFoundIng[k]%> <br>
+                        </li>
+                        <% } %>
+                        <% } %>
                     <% } %>
-                    <% } %>
-                <% } %>
+            <%}%>
+            
             Notes: <%= recipes[i].notes %> <br>
         </li>
     <% } %>

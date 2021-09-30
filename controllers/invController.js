@@ -7,7 +7,7 @@ router.get('/', (req,res)=>{
     try{
         Inventory.find({}, (err, allInventory)=>{
             err ? console.log(err) : res.render('indexInv.ejs', {inventory: allInventory})
-        })
+        }).sort({category:1, invIngredient: 1})
     }catch(err){
         console.log(err).message
     }
@@ -72,7 +72,7 @@ router.put('/:id', (req,res)=>{
                 res.redirect(`/inventory/${req.params.id}/edit`)
             }else{
                 
-                res.redirect(`/inventory/${req.params.id}`)
+                res.redirect(`/inventory`)
             }
         })
     }catch(err){
