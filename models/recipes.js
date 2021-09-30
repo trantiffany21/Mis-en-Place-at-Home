@@ -13,6 +13,7 @@ const recipeSchema = new mongoose.Schema({
         measurement: {type: String},
         measurementType:{type: String},
     }], 
+    img: {type: String},
     urlLink: {type: String}, 
     youtubeLink: {type: String},
     directions: [{type:String}],

@@ -53,6 +53,10 @@
         <button type="button" onclick="removeIngredientListForm(); return false;"> - </button>
         <section class="form-group">
             <fieldset class="col-auto">
+                <label for="img">Image Link: </label>
+                <input type="text" class="form-control" id="img" name="img" value="<%=recipe.img%>">
+            </fieldset>
+            <fieldset class="col-auto">
                 <label for="urlLink">Recipe Link: </label>
                 <input type="text" class="form-control" id="urlLink" name="urlLink" value="<%=recipe.urlLink%>">
             </fieldset>

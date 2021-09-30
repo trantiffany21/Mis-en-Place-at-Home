@@ -1,5 +1,5 @@
 <%- include('./partials/header.ejs')%>
-    <h1>All Recipes</h1>
+    <h1>(Almost) Available Recipes</h1>
     <article class="dropdown d-flex justify-content-end">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
           All Recipes
@@ -15,12 +15,20 @@
         <li>
             Name: <a href="/recipes/<%= recipes[i].id %>"><%= recipes[i].name %></a> <br>
             Cuisine: <%= recipes[i].cuisine %> <br>
+            Missing: <br>
+            <% for(let j =0; j < notFound.length; j++){ %>
+                <%if(notFound[j].recipeId === recipes[i].id){ %>
+                    <% for(let k =0; k < notFound[j].notFoundIng.length; k++){ %>
+                    <li>
+                        X <%=notFound[j].notFoundIng[k]%> <br>
+                    </li>
+                    <% } %>
+                    <% } %>
+                <% } %>
             Notes: <%= recipes[i].notes %> <br>
         </li>
     <% } %>
 </ul>
-
-
 <br><br>
 <a href="/recipes/new"><button class="btn btn-primary">+ New Recipe</button></a>
 <%- include('./partials/footer.ejs')%>

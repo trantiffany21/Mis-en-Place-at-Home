@@ -1,8 +1,9 @@
 <%- include('./partials/header.ejs')%>
     <h1><%= recipe.name %></h1>
+    <img class="recipe-img" src="<%=recipe.img%>"" alt="<%=recipe.name%> image">
     <ul>
         <li>
-            Name: <%= recipe.name %> <br>
+            
             Cuisine: <%= recipe.cuisine %> <br>
             Serving Size: <%= recipe.servingSize %> <br>
             Ingredients:
@@ -16,20 +17,27 @@
             <% } if(recipe.urlLink){ %>
                 Recipe Link: <a href="<%= recipe.urlLink %>" target="_blank"><%= recipe.urlLink %></a> <br>
             <% }%>
-            <% if(recipe.youtubeLink){ %>
-                Youtube Link: <%= recipe.youtubeLink %> <br>
-            <% }%>
+                        
             Directions:
-            <% for(elem of recipe.directions){ %>
+            <% for(let i = 0; i< recipe.directions.length; i++){ %>
                 <li>
-                <%= elem %> : 
-                <%= elem.direction %>
+                    <%= i+1 %>
+                    <%= recipe.directions[i] %>
                 </li>
                 <br>
             <% }%>
             Notes: <%= recipe.notes %> <br>
         </li>
 </ul>
+<% if(recipe.youtubeLink){ %>
+    <article>
+        <% let str = recipe.youtubeLink.split(/[/=]/)%>
+        <iframe width="420" height="315"
+        src="https://www.youtube.com/embed/<%=str[str.length-1]%>" allowfullscreen>
+        </iframe>
+    </article>
+<% }%>
+
 <br><br>
 <section class="row">
     <article class="col-auto">
@@ -41,5 +49,4 @@
         </form>
     </article>
 </section>
-</body>
-</html>
+<%- include('./partials/footer.ejs')%>
