@@ -7,8 +7,8 @@
           Sort By:
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="/inventory/">By Category</a></li>
-          <li><a class="dropdown-item" href="/inventory/all">By Alphabet A-Z</a></li>
+            <li><a class="dropdown-item" href="/inventory/">By Alphabet A-Z</a></li>
+            <li><a class="dropdown-item" href="/inventory/category">By Category</a></li>
         </ul>
       </article>
     </section>
@@ -25,10 +25,11 @@
             categories.sort()
             console.log(categories)
         %>
+        <section class="row">
         <% for(let i =0; i<categories.length; i++){ %>
-        <article class="accordion-item">
+        <article class="accordion-item col-6 col-md-4">
             <h2 class="accordion-header" id="panelsStayOpen-heading<%=i%>>">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse<%=i%>" aria-expanded="false" aria-controls="panelsStayOpen-collapse<%=i%>">
+                <button class="fw-bold accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse<%=i%>" aria-expanded="false" aria-controls="panelsStayOpen-collapse<%=i%>">
                 <%= categories[i].toUpperCase()%>
             </button>
           </h2>
@@ -77,15 +78,30 @@
         </article>
         <% } %>
       </section>
+    </section>
       <%}else if(sort === "all"){%>
-    <ul>
-        <% for(let i =0; i<inventory.length; i++){ %>
-            <li>
-                Ingredient Name: <a href="/inventory/<%= inventory[i].id %>/edit"><%= inventory[i].invIngredient %></a> <br>
-                Category: <%= inventory[i].category %>
-            </li>
+    <section class="d-flex justify-content-center">
+        <table class="table table-hover table-sm w-50">
+            <thead >
+                <tr>
+                    <th style="width:25%" class="table table-primary">Ingredient Name: </th>
+                    <th style="width:25%" class="table table-primary">Category: </th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(let i =0; i<inventory.length; i++){ %>
+                    <tr>
+                        <td class="table-light">
+                            <a href="/inventory/<%= inventory[i].id %>/edit"><%= inventory[i].invIngredient %></a> <br>
+                        </td>
+                        <td class="table-light">
+                            <%= inventory[i].category %>
+                        </td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </section>
         <% } %>
-    </ul>
-    <% } %>
 
 <%- include('./partials/footer.ejs')%>

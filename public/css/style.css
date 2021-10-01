@@ -1,5 +1,24 @@
+html{
+    position:relative;
+    min-height:100%;
+}
 body{
     margin: 0 50px 0 50px;
+}
+body::after{
+    background: url('/images/kitchen.jpg') no-repeat center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    content: "";
+    opacity: 0.5;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1; 
 }
 .recipe-img{
     height: 300px; 
@@ -11,12 +30,27 @@ ul{
     list-style-type: none;
 }
 .card-img-top{
-    height:200px;
-    width:200px;
+    height:25vh;
+    width:25vw;
 }
 .card{
-    width:200px;
+    width:12rem;
+    overflow:auto;
+    margin: 10px 10px 10px 10px;
 }
 .filter-bar{
     margin: 25px auto;
+}
+iframe{
+    width: 75%;
+    max-height: 100vh;
+    min-height: 50vh;
+}
+main{
+    margin-bottom:50px;
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+    right:0;
 }

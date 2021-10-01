@@ -72,7 +72,7 @@ router.get('/match', async (req,res)=>{
 
         console.log('recipematchids: ', recipeMatchIds)
 
-        //find the matching recipe IDs in the Recipe db and create array to send those items to the match.ejs
+        //find the matching recipe IDs in the Recipe db and create array to send those items to the indexRecipe.ejs
         let foundMatches = await Recipe.find({_id: {$in: recipeMatchIds}})
         res.render('indexRecipe.ejs', {recipes: foundMatches, pageTitle: "Kitchen-Ready Recipes"})
 })
@@ -135,7 +135,7 @@ router.get('/approxmatch', async (req,res)=>{
     console.log('missing: ', notFoundArr)
     console.log('recipematchids: ', recipeMatchIds)
 
-    //find the matching recipe IDs in the Recipe db and create array to send those items to the match.ejs
+    //find the matching recipe IDs in the Recipe db and create array to send those items to the indexRecipe.ejs
     let foundMatches = await Recipe.find({_id: {$in: recipeMatchIds}})
 
     res.render('indexRecipe.ejs', {recipes: foundMatches, notFound: notFoundArr, pageTitle: "Kitchen (Almost) Ready Recipes"})
