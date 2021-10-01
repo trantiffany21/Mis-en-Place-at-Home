@@ -1,7 +1,9 @@
 <%- include('./partials/header.ejs')%>
     <h1>All Inventory</h1>
-    <article class="dropdown d-flex justify-content-end">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+    <section class="filter-bar d-flex justify-content-between">
+    <a href="/inventory/new"><button class="btn btn-success">+ New Inventory</button></a>
+    <article class="dropdown d-flex">
+        <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
           Sort By:
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -9,6 +11,7 @@
           <li><a class="dropdown-item" href="/inventory/all">By Alphabet A-Z</a></li>
         </ul>
       </article>
+    </section>
       <% if(sort === "category"){%>
     <section class="accordion" id="accordionPanelsStayOpenExample">
         <% 
@@ -84,5 +87,5 @@
         <% } %>
     </ul>
     <% } %>
-<a href="/inventory/new"><button class="btn btn-primary">+ New Inventory</button></a>
+
 <%- include('./partials/footer.ejs')%>

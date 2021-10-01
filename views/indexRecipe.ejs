@@ -1,11 +1,11 @@
 <%- include('./partials/header.ejs')%>
     <h1><%=pageTitle%></h1>
-  <section class="filter-bar d-flex justify-content-between"">
+  <section class="filter-bar d-flex justify-content-between">
     
-    <a href="/recipes/new"><button class="btn btn-primary">+ New Recipe</button></a>
+    <a href="/recipes/new"><button class="btn btn-success">+ New Recipe</button></a>
         <article class="dropdown d-flex ">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-              <%=pageTitle%>
+            <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              Filter
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
               <li><a class="dropdown-item" href="/recipes">All Recipes</a></li>
@@ -14,35 +14,33 @@
             </ul>
           </article>
   </section>
-    <ul>
-      <section class="card-deck d-flex justify-content-around flex-wrap">
+  <section class="card-deck d-flex justify-content-between flex-wrap">
 
-        <% for(let i =0; i<recipes.length; i++){ %>
-          <article class="card">
-            <img class="card-img-top img-thumbnail" src="<%=recipes[i].img%>" alt="<%=recipes[i].name%> image">
-            <div class="card-body">
-              <h6 class="card-title"><a href="/recipes/<%= recipes[i].id %>"><%=recipes[i].name%></a></h6>
-              <p class="card-text"> Cuisine: <%= recipes[i].cuisine %></p>
-              
-            
-            <% if(pageTitle === 'Kitchen (Almost) Ready Recipes'){%>
-              <% if(notFound.length >0){%>
-                <% for(let j =0; j < notFound.length; j++){ %>
-                    <%if(notFound[j].recipeId === recipes[i].id){ %>
-                        Missing: <br>
-                        <% for(let k =0; k < notFound[j].notFoundIng.length; k++){ %>
-                          <p class="card-text"> &#10062 <%=notFound[j].notFoundIng[k]%></p>
-                        <% } %>
-                        <% } %>
+    <% for(let i =0; i<recipes.length; i++){ %>
+      <article class="card">
+        <img class="card-img-top img-thumbnail" src="<%=recipes[i].img%>" alt="<%=recipes[i].name%> image">
+        <div class="card-body">
+          <h6 class="card-title"><a href="/recipes/<%= recipes[i].id %>"><%=recipes[i].name%></a></h6>
+          <p class="card-text"> Cuisine: <%= recipes[i].cuisine %></p>
+          
+        
+        <% if(pageTitle === 'Kitchen (Almost) Ready Recipes'){%>
+          <% if(notFound.length >0){%>
+            <% for(let j =0; j < notFound.length; j++){ %>
+                <%if(notFound[j].recipeId === recipes[i].id){ %>
+                    Missing: <br>
+                    <% for(let k =0; k < notFound[j].notFoundIng.length; k++){ %>
+                      <p class="card-text"> &#10062 <%=notFound[j].notFoundIng[k]%></p>
                     <% } %>
-              <%}%>
-            <% } %>
-            <p class="card-text"><small class="text-muted">Notes: <%= recipes[i].notes %></small></p>
-          </div>
-          </article>
-          <% } %>
-      </section>
-</ul>
+                    <% } %>
+                <% } %>
+          <%}%>
+        <% } %>
+        <p class="card-text"><small class="text-muted">Notes: <%= recipes[i].notes %></small></p>
+      </div>
+      </article>
+      <% } %>
+  </section>
 
 
 
