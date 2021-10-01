@@ -1,23 +1,23 @@
 module.exports = [
     {
         invIngredient: 'salt', 
-        category: 'spice',
+        category: 'herbs and spices',
     },
     {
         invIngredient: 'black pepper', 
-        category: 'spice',
+        category: 'herbs and spices',
     },
     {
         invIngredient: 'onion powder', 
-        category: 'spice',
+        category: 'herbs and spices',
     },
     {
         invIngredient: 'garlic', 
-        category: 'herb',
+        category: 'herbs and spices',
     },
     {
         invIngredient: 'thyme', 
-        category: 'herb',
+        category: 'herbs and spices',
     },
     {
         invIngredient: 'chicken thigh', 
@@ -25,11 +25,11 @@ module.exports = [
     },
     {
         invIngredient: 'ribeye', 
-        category: 'portein',
+        category: 'protein',
     },
     {
         invIngredient: 'salmon', 
-        category: 'produce',
+        category: 'protein',
     },
     {
         invIngredient: 'egg', 
@@ -37,14 +37,14 @@ module.exports = [
     },
     {
         invIngredient: 'flour', 
-        category: 'grain',
+        category: 'grains and nuts',
     },
     {
         invIngredient: 'white rice', 
-        category: 'grain',
+        category: 'grains and nuts',
     },
     {
         invIngredient: 'panko', 
-        category: 'grain',
+        category: 'grains and nuts',
     },
 ]

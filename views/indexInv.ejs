@@ -1,12 +1,73 @@
 <%- include('./partials/header.ejs')%>
     <h1>All Inventory</h1>
+    <section class="accordion" id="accordionPanelsStayOpenExample">
+        <% 
+            console.log(inventory)
+            let categories = []
+            for(let i =0; i<inventory.length; i++){ 
+                if(!categories.includes(inventory[i].category.toLowerCase())){
+                    categories.push(inventory[i].category.toLowerCase())
+                }
+            }
+            categories.sort()
+            console.log(categories)
+        %>
+        <% for(let i =0; i<categories.length; i++){ %>
+        <article class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-heading<%=i%>>">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse<%=i%>" aria-expanded="false" aria-controls="panelsStayOpen-collapse<%=i%>">
+                <%= categories[i].toUpperCase()%>
+            </button>
+          </h2>
+          <%for(let j = 0; j< inventory.length; j++){
+            if(inventory[j].category.toLowerCase() === categories[i]) {%>
+                <div id="panelsStayOpen-collapse<%=i%>" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-heading<%=i%>">
+                    <div class="accordion-body">
+                        <% switch(inventory[j].category.toLowerCase()){
+                            case 'baking products':
+                                %>&#127856<%
+                                break
+                            case 'condiment':
+                                %>&#129387<%
+                                break
+                            case 'dairy':
+                                %>&#129472<%
+                                break
+                            case 'oil and fats':
+                                %>&#129480<%
+                                break
+                            case 'fruits':
+                                %>&#127822<%
+                                break
+                            case 'grains and nuts':
+                                %>&#127838<%
+                                break
+                            case 'herbs and spices':
+                                %>&#129474<%
+                                break
+                            case 'pasta and noodles':
+                                %>&#127836<%
+                                break
+                            case 'protein':
+                                %>&#129385<%
+                                break
+                            case 'vegetables':
+                                %>&#129382<%
+                                break
+                            default:
+                                %>&#127869<%
+                        }%>
+                    <a href="/inventory/<%= inventory[j].id%>/edit"><%= inventory[j].invIngredient %></a>  <br>
+                    </div>
+                </div>
+          <%}}%>
+        </article>
+        <% } %>
+      </section>
     <ul>
-    <% for(let i =0; i<inventory.length; i++){ %>
-        <li>
-            Ingredient Name: <a href="/inventory/<%= inventory[i].id %>/edit"><%= inventory[i].invIngredient %></a> <br>
-            Category: <%= inventory[i].category %>
-        </li>
-    <% } %>
+    
+        
+    
 </ul>
 <a href="/inventory/new"><button class="btn btn-primary">+ New Inventory</button></a>
 <%- include('./partials/footer.ejs')%>

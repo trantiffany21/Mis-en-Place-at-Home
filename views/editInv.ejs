@@ -10,7 +10,24 @@
             </fieldset>
             <fieldset class="col-auto">
                 <label for="category">Category: </label>
-                <input type="text" class="form-control" id="category" name="category" value="<%=item.category%>">
+                <select class="custom-select form-control" name="category" id="category">
+                    <option selected><%=item.category%></option>
+                    <% let options = [
+                    'baking products',
+                    'condiment',
+                    'dairy',
+                    'fats and oil',
+                    'fruits',
+                    'grains and nuts',
+                    'herbs and spices',
+                    'pasta',
+                    'protein',
+                    'vegetables',
+                    'other']
+                        for(elem of options) { %>
+                            <option value="<%= elem %>"><%= elem %></option>
+                        <% } %>
+                </select>
             </fieldset>
         </section>
     <br><br>

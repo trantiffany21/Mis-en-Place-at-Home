@@ -3,11 +3,12 @@ const Inventory = require('../models/inventory')
 const invSeed = require('../models/seed/inventorySeed')
 const router = express.Router()
 
-router.get('/', (req,res)=>{
+router.get('/', async (req,res)=>{
     try{
         Inventory.find({}, (err, allInventory)=>{
             err ? console.log(err) : res.render('indexInv.ejs', {inventory: allInventory})
         }).sort({category:1, invIngredient: 1})
+
     }catch(err){
         console.log(err).message
     }
