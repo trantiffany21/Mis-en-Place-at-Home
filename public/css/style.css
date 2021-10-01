@@ -30,11 +30,11 @@ ul{
     list-style-type: none;
 }
 .card-img-top{
-    height:25vh;
-    width:25vw;
+    height:12rem;
+    width:12rem;
 }
 .card{
-    width:12rem;
+    width: 12rem;
     overflow:auto;
     margin: 10px 10px 10px 10px;
 }
