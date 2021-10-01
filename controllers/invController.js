@@ -6,8 +6,18 @@ const router = express.Router()
 router.get('/', async (req,res)=>{
     try{
         Inventory.find({}, (err, allInventory)=>{
-            err ? console.log(err) : res.render('indexInv.ejs', {inventory: allInventory})
+            err ? console.log(err) : res.render('indexInv.ejs', {inventory: allInventory, sort: "category"})
         }).sort({category:1, invIngredient: 1})
+
+    }catch(err){
+        console.log(err).message
+    }
+})
+router.get('/all', async (req,res)=>{
+    try{
+        Inventory.find({}, (err, allInventory)=>{
+            err ? console.log(err) : res.render('indexInv.ejs', {inventory: allInventory, sort: "all"})
+        }).sort({invIngredient: 1})
 
     }catch(err){
         console.log(err).message

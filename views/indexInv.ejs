@@ -1,5 +1,15 @@
 <%- include('./partials/header.ejs')%>
     <h1>All Inventory</h1>
+    <article class="dropdown d-flex justify-content-end">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          Sort By:
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="/inventory/">By Category</a></li>
+          <li><a class="dropdown-item" href="/inventory/all">By Alphabet A-Z</a></li>
+        </ul>
+      </article>
+      <% if(sort === "category"){%>
     <section class="accordion" id="accordionPanelsStayOpenExample">
         <% 
             console.log(inventory)
@@ -64,10 +74,15 @@
         </article>
         <% } %>
       </section>
+      <%}else if(sort === "all"){%>
     <ul>
-    
-        
-    
-</ul>
+        <% for(let i =0; i<inventory.length; i++){ %>
+            <li>
+                Ingredient Name: <a href="/inventory/<%= inventory[i].id %>/edit"><%= inventory[i].invIngredient %></a> <br>
+                Category: <%= inventory[i].category %>
+            </li>
+        <% } %>
+    </ul>
+    <% } %>
 <a href="/inventory/new"><button class="btn btn-primary">+ New Inventory</button></a>
 <%- include('./partials/footer.ejs')%>
