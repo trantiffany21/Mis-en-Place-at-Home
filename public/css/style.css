@@ -42,7 +42,7 @@ ul{
     margin: 25px auto;
 }
 iframe{
-    width: 75%;
+    width: 70%;
     max-height: 100vh;
     min-height: 50vh;
 }
@@ -63,4 +63,23 @@ nav{
 }
 h1{
     margin-top: 60px;
+}
+.background-overlay{
+    margin: 50px 0px 0px 0px;
+    background-color: rgb(220,220,220,.8);
+    padding: 10px;
+}
+form{
+    margin: 50px 0px 0px 0px;
+    background-color: rgb(255,255,255,.9);
+    padding: 10px;
+}
+.delete-btn{
+    margin: -50px 0px 0px 0px;
+}
+.delete-recipe-btn{
+    margin: -50px 0px 0px 0px;
+    padding: 0px;
+    margin: 0px;
+    background-color: rgb(255,255,255,0);
 }

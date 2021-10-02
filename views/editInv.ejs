@@ -1,8 +1,6 @@
 <%- include('./partials/header.ejs')%>
     <h1>Edit <%= item.invIngredient %></h1>
-    <main class="row align-items-end">    
-        <article class="col-auto">
-    <form action="/inventory/<%=item.id%>?_method=PUT" method="POST">
+    <form class="w-50" action="/inventory/<%=item.id%>?_method=PUT" method="POST">
         <section class="form-group row">
             <fieldset class="col-auto">
                 <label for="invIngredient">Ingredient: </label>
@@ -33,12 +31,10 @@
     <br><br>
     <input type="submit" class="btn btn-primary" value="Edit item" >
 </form>
-</article>
-<article class="col-auto">
-        <form action="/inventory/<%=item.id%>?_method=DELETE" method="POST">
-            <input class="btn btn-primary" type="submit" value="Delete Item">
+<article class="delete-btn">
+        <form class="w-50" action="/inventory/<%=item.id%>?_method=DELETE" method="POST">
+            <input class="btn btn-danger" type="submit" value="Delete Item">
         </form>
     </article>
-</main>
 
 <%- include('./partials/footer.ejs')%>

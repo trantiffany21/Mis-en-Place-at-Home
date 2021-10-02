@@ -1,36 +1,43 @@
 <%- include('./partials/header.ejs')%>
     <h1><%= recipe.name %></h1>
+    <section class="background-overlay">
     <% if(recipe.img){ %>
         <img class="recipe-img" src="<%=recipe.img%>"" alt="<%=recipe.name%> image">
     <%}%>
-    <ul>
-        <li>
-            
-            Cuisine: <%= recipe.cuisine %> <br>
-            Serving Size: <%= recipe.servingSize %> <br>
-            Ingredients:
+
+    
+    <dl class="row">
+        <dt class="col-sm-3">Cuisine</dt>
+        <dd class="col-sm-9"> <%= recipe.cuisine %></dd>
+        <dt class="col-sm-3">Serving Size</dt>
+        <dd class="col-sm-9"> <%= recipe.servingSize %></dd>
+        <dt class="col-sm-3">Ingredients</dt>
+        <article class="ingredient">
+
             <% for(elem of recipe.ingredientList){ %>
-                <li>
-                <%= elem.ingredient %>
-                <%= elem.measurement %>
-                <%= elem.measurementType %>
-            </li>
-                <br>
-            <% } if(recipe.urlLink){ %>
-                Recipe Link: <a href="<%= recipe.urlLink %>" target="_blank"><%= recipe.urlLink %></a> <br>
+                <dd class="col-sm-9">
+                    <dl class="row">
+                        <dt class="col-sm-1"></dt>
+                        <dd class="col-sm-8"><%= elem.measurement %> <%= elem.measurementType %> <%= elem.ingredient %></dd>
+                        </dl>
+                </dd>
             <% }%>
-                        
-            Directions:
+        </article>
+        <%if(recipe.urlLink){ %>
+            <dt class="col-sm-3">Recipe Link</dt>
+            <dd class="col-sm-9"> <a href="<%= recipe.urlLink %>" target="_blank"><%= recipe.urlLink %></a></dd>
+        <% }%>
+        <dt class="col-sm-3">Directions</dt>
             <% for(let i = 0; i< recipe.directions.length; i++){ %>
-                <li>
-                    <%= i+1 %>
-                    <%= recipe.directions[i] %>
-                </li>
-                <br>
+                <dl class="row">
+                    <dt class="col-sm-1"><%= i+1 %> </dt>
+                    <dd class="col-md"><%= recipe.directions[i] %></dd>
+                </dl>
             <% }%>
-            Notes: <%= recipe.notes %> <br>
-        </li>
-</ul>
+        <dt class="col-sm-3">Notes</dt>
+        <dd class="col-sm-9"> <%= recipe.notes %></dd>
+    </dl>
+        
 <% if(recipe.youtubeLink){ %>
     <article class="d-flex justify-content-center embed-responsive embed-responsive-16by9">
         <% let str = recipe.youtubeLink.split(/[/=]/)%>
@@ -40,15 +47,16 @@
         </iframe>
     </article>
 <% }%>
+</section>
 
 <br><br>
 <section class="row">
     <article class="col-auto">
-        <a href="/recipes/<%=recipe.id%>/edit"><button class="btn btn-outline-primary">Edit Recipe</button></a>
+        <a href="/recipes/<%=recipe.id%>/edit"><button class="btn btn-primary">Edit Recipe</button></a>
     </article>
-    <article class="col-auto">
-        <form action="/recipes/<%=recipe.id%>?_method=DELETE" method="POST">
-            <input class="btn btn-outline-danger" type="submit" value="Delete Recipe">
+    <article class="col-auto ">
+        <form class="delete-recipe-btn" action="/recipes/<%=recipe.id%>?_method=DELETE" method="POST">
+            <input class="btn btn-danger" type="submit" value="Delete Recipe">
         </form>
     </article>
 </section>
