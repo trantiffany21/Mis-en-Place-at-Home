@@ -23,12 +23,13 @@ body::after{
 h1{
     font-family: 'helvetica', 'sans-serif', 'arial';
     font-weight: bold;
+    font-size: 50px;
     margin-top:100px;
     text-shadow:
-        0.02em 0 white,
-        0 0.02em white,
-        -0.04em 0 white,
-        0 -0.04em white;
+        0.01em 0 white,
+        0 0.01em white,
+        -0.01em 0 white,
+        0 -0.01em white;
 }
 .recipe-img{
     height: 300px; 

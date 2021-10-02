@@ -18,7 +18,11 @@
 
     <% for(let i =0; i<recipes.length; i++){ %>
       <article class="card">
-        <img class="card-img-top img-thumbnail" src="<%=recipes[i].img%>" alt="<%=recipes[i].name%> image">
+        <% if(recipes[i].img){ %>
+          <img class="card-img-top img-thumbnail" src="<%=recipes[i].img%>" alt="<%=recipes[i].name%> image">
+          <%}else{%>
+              <img class="card-img-top img-thumbnail" src="/images/genericfood.jpeg"" alt="generic food image">
+          <%}%>
         <div class="card-body">
           <h6 class="card-title"><a href="/recipes/<%= recipes[i].id %>"><%=recipes[i].name%></a></h6>
           <p class="card-text"> Cuisine: <%= recipes[i].cuisine %></p>

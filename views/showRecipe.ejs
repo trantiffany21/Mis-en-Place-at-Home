@@ -3,7 +3,9 @@
     <section class="background-overlay">
     <% if(recipe.img){ %>
         <img class="recipe-img" src="<%=recipe.img%>"" alt="<%=recipe.name%> image">
-    <%}%>
+        <%}else{%>
+            <img class="recipe-img" src="/images/genericfood.jpeg"" alt="generic food image">
+        <%}%>
 
     
     <dl class="row">

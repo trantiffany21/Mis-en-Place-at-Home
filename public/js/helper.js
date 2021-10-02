@@ -1,4 +1,3 @@
-let ingredientList = [] 
 const insertOptions = () =>{
     let options = ['cup', 'grams', 'lbs','mL','ounce','piece','tablespoon','teaspoon','other']
     let optionHTML = ""

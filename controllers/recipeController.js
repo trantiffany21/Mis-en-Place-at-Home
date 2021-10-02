@@ -8,7 +8,7 @@ router.get('/', (req,res)=>{
     try{
         Recipe.find({}, (err, allRecipes)=>{
             err ? console.log(err) : res.render('indexRecipe.ejs', {recipes: allRecipes, pageTitle: "All Recipes"})
-        })
+        }).sort({name:1})
         
     }catch(err){
         console.log(err.message)
@@ -192,6 +192,12 @@ router.post('/', (req,res)=>{
         }
         //assign new array of objects to req.body.ingredientList
         req.body.ingredientList = ingredientList
+
+        for(let i = 0; i< req.body.directions.length; i++ ){
+            if(req.body.directions[i] === ""){
+                req.body.directions.splice(i,1)
+            }
+        }
         console.log(req.body)
         Recipe.create(req.body, (err, newRecipe)=>{
             if(err){
@@ -235,7 +241,6 @@ router.put('/:id', (req,res)=>{
 
         //assign new array of objects to req.body.ingredientList
         req.body.ingredientList = ingredientList
-
        for(let i = 0; i< req.body.directions.length; i++ ){
            if(req.body.directions[i] === ""){
                req.body.directions.splice(i,1)
