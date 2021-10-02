@@ -1,5 +1,6 @@
 # Mis en Place at Home
 > Mise en Place - Home Edition
+> Direct Link: https://mis-en-place-at-home.herokuapp.com/
 
 ## Project Description
 > My online cookbook database stores your favorite recipes and your kitchen inventory. The online app allows you to create, edit, or delete recipes or ingredients in your kitchen. There is also be filtering to show you what recipes you are able to cook with your current kitchen inventory. In future updates, there will be login capabilities for individual accounts. 
@@ -19,6 +20,7 @@
 - The game was created using Node.js, Mongoose, Express, Javascript, HTML, and CSS
 - Mongoose queries were primarily used to locate and render data from database. The $in operator was utilized in the matching capabilities
 - The Bootstrap framework was used for styling of the pages
+- The app is being hosted on MongoDB Atlas and deployed on Heroku
 
 
 ### Upcoming features
