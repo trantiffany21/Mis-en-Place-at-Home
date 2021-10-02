@@ -64,7 +64,7 @@ router.get('/match', async (req,res)=>{
             let match = await Inventory.find({
                 invIngredient: {$in: normIng}}, 'id invIngredient')
             console.log('match, ', match)
-            if(match.length === normIng.length){
+            if(match.length >= normIng.length){
                 recipeMatchIds.push( arrayOfIngredientList[i]['recipeId'])
             }
             
