@@ -174,7 +174,7 @@ router.post('/', (req,res)=>{
         //iterate through array to create new objects and push to array
         console.log("test: ", typeof ingredients)
         if(ingredients){
-            if(typeof ingredients === 'array'){
+            if(Array.isArray(ingredients)){
                 for(let i = 0; i<ingredients.length; i++){
                     let obj = {}
                     obj.ingredient = ingredients[i]
