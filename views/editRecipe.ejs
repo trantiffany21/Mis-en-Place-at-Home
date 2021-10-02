@@ -14,23 +14,23 @@
                 <label for="servingSize">Serving Size: </label>
                 <input type="text" class="form-control" id="servingSize" name="servingSize" value="<%=recipe.servingSize%>">
             </fieldset>
-        </section>
-        Add/Remove Ingredients: <button type="button" onclick="addIngredientListForm()"> + </button>
-        <button type="button" onclick="removeIngredientListForm(); return false;"> - </button>
+        </section> <br>
+        <p><strong>Add/Remove Ingredients: </strong><button class="btn btn-outline-success btn-sm" type="button" onclick="addIngredientListForm()"> + </button> 
+        <button class="btn btn-outline-danger btn-sm" type="button" onclick="removeIngredientListForm(); return false;"> - </button> </p>
         <section id="ingredient-list" >
         <% for(let i = 0; i < ingredientList.length; i++) { %>
             <article>
                 <section class="form-group row">
                     <fieldset class="col">
-                        <label for="ingredient">Ingredient: </label>
+                        <label for="ingredient"> </label>
                         <input type="text" class="form-control" id="ingredient" name="ingredient" value="<%=ingredientList[i].ingredient%>">
                     </fieldset>
                     <fieldset class="col-sm-2">
-                        <label for="measurement">Measurement: </label>
+                        <label for="measurement"></label>
                         <input type="text" class="form-control" id="measurement" name="measurement" value="<%=ingredientList[i].measurement%>">
                     </fieldset>
                     <fieldset class="col-sm-auto">
-                        <label for="measurementType">Measurement Type: </label>
+                        <label for="measurementType"></label>
                         <select class="custom-select form-control custom-select-sm" name="measurementType" id="measurementType">
                             <option selected><%=ingredientList[i].measurementType%></option>
                             <% let options = ['cup', 
@@ -51,22 +51,26 @@
             </article>
             <% }%>
         </section>
+        <br>
         <section class="form-group">
             <fieldset class="col-auto">
                 <label for="img">Image Link: </label>
                 <input type="text" class="form-control" id="img" name="img" value="<%=recipe.img%>">
             </fieldset>
+            <br>
             <fieldset class="col-auto">
                 <label for="urlLink">Recipe Link: </label>
                 <input type="text" class="form-control" id="urlLink" name="urlLink" value="<%=recipe.urlLink%>">
             </fieldset>
+            <br>
             <fieldset class="col-auto">
                 <label for="youtubeLink">Youtube Link: </label>
                 <input type="text" class="form-control" id="youtubeLink" name="youtubeLink" value="<%=recipe.youtubeLink%>">
             </fieldset>
         </section>
-        Add/Remove Directions<button type="button" onclick="addDirectionForm()"> + </button>
-        <button type="button" onclick="removeDirectionForm(); return false;"> - </button>
+        <br>
+        <p><strong>Add/Remove Directions: </strong><button class="btn btn-outline-success btn-sm" type="button" onclick="addDirectionForm()"> + </button>
+        <button class="btn btn-outline-danger btn-sm" type="button" onclick="removeDirectionForm(); return false;"> - </button> </p>
             <section id="direction-list" >
             <% for(elem of recipe.directions){ %>
                 <fieldset>
@@ -75,7 +79,7 @@
                 </fieldset>
             <% }%>
             </section>
-        
+            <br>
             <fieldset class="col-auto">
                 <label for="notes">Notes: </label>
                 <textarea type="text" class="form-control" id="notes" name="notes"><%=recipe.notes%></textarea></textarea> 
